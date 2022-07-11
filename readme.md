@@ -47,8 +47,7 @@ Application can be fetched using the following command:
     Step 3). composer install
     
     Step 3). php bin/console doctrine:database:create
-             php bin/console doctrine:database:create --env=test
-    
+
     Step 4). php bin/console doctrine:migration:migrate
     
     Step 5). php bin/console doctrine:fixtures:load
