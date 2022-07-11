@@ -5,6 +5,7 @@ namespace App\Manager;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * Class MailManager
@@ -18,9 +19,11 @@ class MailManager
     private $mailer;
 
     public function __construct(
-        MailerInterface $mailer
+        MailerInterface $mailer,
+        ParameterBagInterface $params
     ) {
         $this->mailer = $mailer;
+        $this->params = $params;
     }
 
 
@@ -32,17 +35,21 @@ class MailManager
     public function sendEmail($user, $movie)
     {
 //        try {
-            $message = (new TemplatedEmail())
-                ->from(self::FROM_EMAIL)
-                ->to(new Address($user->getEmail()))
-                ->subject('Movie created')
-                ->htmlTemplate('emails/moviecreateEmail.html.twig')
+            $environment = $this->params->get('kernel.environment');
+            if($environment != 'test') {
+                $message = (new TemplatedEmail())
+                    ->from(self::FROM_EMAIL)
+                    ->to(new Address($user->getEmail()))
+                    ->subject('Movie created')
+                    ->htmlTemplate('emails/moviecreateEmail.html.twig')
+                    ->context(
+                        [
+                            'movie' => $movie
+                        ]
+                    );
 
-                ->context([
-                    'movie' => $movie
-                ]);
-
-            $this->mailer->send($message);
+                $this->mailer->send($message);
+            }
 //        }
 //        catch (\Exception $exception) {
 //            $exception->getMessage();

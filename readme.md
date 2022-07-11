@@ -33,70 +33,35 @@ Git can be installed on various ways, depending on the environment:
 
 Application can be fetched using the following command:
 
-    git clone https://github.com/arpitarana/movie-symfony-api-platform.git
-    git checkout master    
-
-### Set up rights
-
-Both your web and current user need to be able to write and read from your
-`app/cache` and `app/logs` directories.
-
-On OS X, you need to execute the following commands in your project's directory:
-
-    rm -rf app/cache/*
-    rm -rf app/logs/*
-    sudo chmod +a "www-data allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
-    sudo chmod +a "yourname allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
-
-On Ubuntu or Debian, you need to execute the following commands:
-
-    sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
-    sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
-
-You may also need to [activate ACL file permissions][3]
-
-
-### Install Composer
-
-As Application uses [Composer][2] to manage its dependencies, the tool is needed
-to fetch its dependencies.
-
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
-
-    curl -s http://getcomposer.org/installer | php
-
-Then, use the `install` command to generate a new Symfony application:
-
-    php composer.phar install
-
-Composer will install all the project's dependencies under the `vendor`
-directory or you can install composer at global level. 
+    git clone https://github.com/arpitarana/entertainment-sf5-api-platform
+    git checkout master
 
 
 1) Getting started with Symfony
 -------------------------------
 ###
-    Step 1). composer install or php composer.phar install
+    Step 1). docker-compose up -d --build
     
-    Step 2). symfony server:start
+    Step 2). docker exec -it php74-container bash
+    
+    Step 3). composer install
     
     Step 3). php bin/console doctrine:database:create
              php bin/console doctrine:database:create --env=test
     
     Step 4). php bin/console doctrine:migration:migrate
-             php bin/console doctrine:migration:migrate --env=test
     
     Step 5). php bin/console doctrine:fixtures:load
     
+    Step 7). Import MovieApis.postman_collection.json in postman and 
+             run all endpoints. (*)
+
     Step 6). to run unit test follow the steps 
              vendor/bin/phpunit tests/
     
-2). Open postman and import given file in project root directory
+(*). MovieApis.postman_collection.json file given in project root directory
 Import this file 
 MovieApis.postman_collection.json
-
-and run API to check response.
 
     
 Enjoy!
