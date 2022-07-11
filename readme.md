@@ -42,7 +42,7 @@ Application can be fetched using the following command:
 ###
     Step 1). docker-compose up -d --build
     
-    Step 2). docker exec -it php74-container bash
+    Step 2). docker exec -it sf5-php74-container bash
     
     Step 3). composer install
     
