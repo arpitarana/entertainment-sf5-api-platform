@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "0d7863dc-d300-4b64-9bc7-509c5d905f52",
+		"name": "Movie APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Movies",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"host\", \"http://127.0.0.1:8000\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-token",
+						"value": "5d554081460ad848858d50dedea2f0deeedc7042c3c84b1b2a348dc9fbc71ee57975bd496f566990e43afba7c8200a633a013b499914db84e9812e68",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/v1/movies",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movies by Item",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"host\", \"http://127.0.0.1:8000\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-token",
+						"value": "1c7a48a411edd97684dfebb32fc4271c0be103133b6fd2f2f36f92677e35ed8eb0210b093d6bba2550db4ccce2fa32653ce4955427a0d211cba9cbf2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/v1/movies/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Movies",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"host\", \"http://127.0.0.1:8000\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/ld+json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-token",
+						"value": "5d554081460ad848858d50dedea2f0deeedc7042c3c84b1b2a348dc9fbc71ee57975bd496f566990e43afba7c8200a633a013b499914db84e9812e68",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"111 The Titanic three\",\n    \"casts\":[\n        \"api/v1/casts/1\"\n    ],\n    \"realeaseDate\": \"18-01-2023\",\n    \"director\": \"James Cameron\",\n    \"ratings\": [\n        {\n        \"name\":\"hello\",\n        \"rate\": 9.6666\n        },\n        {\n        \"name\":\"rotten_tomatto\",\n        \"rate\": 3.333\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/movies",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
